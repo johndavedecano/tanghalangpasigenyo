@@ -69,16 +69,13 @@
 
                          <asp:MenuItem Text="Payment" Value="Payment" 
                             NavigateUrl="~/Admin/PaymentSys.aspx"></asp:MenuItem>
-                  
-                  
-<%--
-                        <asp:MenuItem Text="Maintenance" Value="FAQ">
-                            <asp:MenuItem Text="Amenities" Value="Amenities" 
-                                NavigateUrl="~/Maintenance/amenities.aspx"></asp:MenuItem>
-                           <asp:MenuItem NavigateUrl="~/Maintenance/Events.aspx" Text="Facilities" 
-                                Value="Events"></asp:MenuItem>
-                           </asp:MenuItem>--%>
-                           
+
+                        <asp:MenuItem Text="Users" Value="Users">
+                            <asp:MenuItem Text="All Users" Value="All Users" 
+                                NavigateUrl="~/Admin/Users.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Add User" Value="Add User" 
+                                NavigateUrl="~/Admin/Users_Add.aspx"></asp:MenuItem>
+                        </asp:MenuItem>
                       
                        <asp:MenuItem Text="Reports" Value="Reports">
                             

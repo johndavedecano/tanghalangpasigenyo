@@ -1,69 +1,102 @@
-﻿.previewPane {
-     background-color: #fff;
-     background-image: url(Images/previewPaneBg.gif);
-     background-repeat: no-repeat;
+﻿.fields
+{
+float:right;
+width:180px;
+height: 20px;
+padding-bottom:10px;
+}
+.labels
+{
+float:left; 
+clear:both;
+width: 120px;
+height: 20px;
+padding-bottom:10px;
+color:black;
+}
+fieldset
+{
+margin-top: 0px;
+}
+.style3
+{
+    font-family: "Matura MT Script Capitals";
+    color: #FF3300;
+    font-size: xx-large;
+    text-align: center;
+}
+.style4
+{
+    font-weight: normal;
+    font-family: "Book Antiqua";
+}
+
+.previewPane {
+    background-color: #fff;
+    background-image: url(Images/previewPaneBg.gif);
+    background-repeat: no-repeat;
 }
 .infoPane {
-     background-color: #fff;
-     background-image: url(Images/infoPaneBg.gif);
-     background-repeat: no-repeat;
+    background-color: #fff;
+    background-image: url(Images/infoPaneBg.gif);
+    background-repeat: no-repeat;
 }
 .infoPaneBg {
-     margin-top: 20px;
-     background-color: #fff;
-     background-image: url(Images/grayBg.gif);
-     background-repeat: no-repeat;
-     height: 192px;
-     width: 272px;
+    margin-top: 20px;
+    background-color: #fff;
+    background-image: url(Images/grayBg.gif);
+    background-repeat: no-repeat;
+    height: 192px;
+    width: 272px;
 }
 .imageDetailsHeader {
-     font: bold 16px Arial, Verdana, Helvetica, Sans-serif;
-     color: #666666;
-     margin-top: 20px;
-     margin-left: 30px;
-     margin-bottom: 5px;
+    font: bold 16px Arial, Verdana, Helvetica, Sans-serif;
+    color: #666666;
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-bottom: 5px;
 }
 .details {
-     font: normal 11px Arial, Verdana, Helvetica, Sans-serif;
-     color: #666666;
-     margin-left: 30px;
-     width: 230px;
-     vertical-align: middle;
-     margin-bottom: 4px;
+    font: normal 11px Arial, Verdana, Helvetica, Sans-serif;
+    color: #666666;
+    margin-left: 30px;
+    width: 230px;
+    vertical-align: middle;
+    margin-bottom: 4px;
 }
 .detailsTxtBox {
-     font: normal 11px Arial, Verdana, Helvetica, Sans-serif;
-     color: #666666;
-     height: 13px;
-     border: solid 1px #ccc;
+    font: normal 11px Arial, Verdana, Helvetica, Sans-serif;
+    color: #666666;
+    height: 13px;
+    border: solid 1px #ccc;
 }
 a.editBtns, a.editBtns:link, a.editBtns:visited, a.editBtns:active, a.editBtns:focus {
-     text-decoration: none;
-     border: solid 1px #808080;
-     display: inline-block;
-     width: 50px;
-     font: bold 11px Arial, Verdana, Helvetica, Sans-serif;
-     text-align: center;
-     margin-top: 4px;
-     background-color: #e8e8e8;
-     color: #808080;
+    text-decoration: none;
+    border: solid 1px #808080;
+    display: inline-block;
+    width: 50px;
+    font: bold 11px Arial, Verdana, Helvetica, Sans-serif;
+    text-align: center;
+    margin-top: 4px;
+    background-color: #e8e8e8;
+    color: #808080;
 }
 a.editBtns:hover {
-     color: #3b3b3b;
+    color: #3b3b3b;
 }
 .thumbsViewer {
-     background-color: #fff;
-     background-image: url(Images/thumbsBg.gif);
+    background-color: #fff;
+    background-image: url(Images/thumbsBg.gif);
 }
  
 .RotatorImage {
-     margin: 0px 11px;
-     cursor: hand;
-     cursor: pointer;
+    margin: 0px 11px;
+    cursor: hand;
+    cursor: pointer;
 }
 .itemTemplate {
-     text-align: center;
-     padding: 20px;
-     border: solid 1px #dddddd !important;
-     font-size: 12px;
+    text-align: center;
+    padding: 20px;
+    border: solid 1px #dddddd !important;
+    font-size: 12px;
 }
