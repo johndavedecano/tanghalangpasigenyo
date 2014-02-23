@@ -1,0 +1,25 @@
+<asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+          ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
+          DeleteCommand="DELETE FROM [AmenityTBL] WHERE [AmenityId] = @AmenityId" 
+          InsertCommand="INSERT INTO [AmenityTBL] ([VenueId], [AmenityName], [Description], [Quantity], [Price]) VALUES (@VenueId, @AmenityName, @Description, @Quantity, @Price)" 
+          SelectCommand="SELECT * FROM [AmenityTBL]" 
+          UpdateCommand="UPDATE [AmenityTBL] SET [VenueId] = @VenueId, [AmenityName] = @AmenityName, [Description] = @Description, [Quantity] = @Quantity, [Price] = @Price WHERE [AmenityId] = @AmenityId">
+          <DeleteParameters>
+              <asp:Parameter Name="AmenityId" Type="Int32" />
+          </DeleteParameters>
+          <InsertParameters>
+              <asp:ControlParameter ControlId='TextBox4' PropertyName='Text' Name="VenueId" Type="Int32" />
+              <asp:ControlParameter ControlId='TextBox1' PropertyName='Text' Name="AmenityName" Type="String" />
+              <asp:ControlParameter ControlId='TextBox2' PropertyName='Text' Name="Description" Type="String" />
+              <asp:ControlParameter ControlId='TextBox5' PropertyName='Text' Name="Quantity" Type="Int32" />
+              <asp:ControlParameter ControlId='TextBox3' PropertyName='Text' Name="Price" Type="Decimal" />
+          </InsertParameters>
+          <UpdateParameters>
+              <asp:Parameter Name="VenueId" Type="Int32" />
+              <asp:Parameter Name="AmenityName" Type="String" />
+              <asp:Parameter Name="Description" Type="String" />
+              <asp:Parameter Name="Quantity" Type="Int32" />
+              <asp:Parameter Name="Price" Type="Decimal" />
+              <asp:Parameter Name="AmenityId" Type="Int32" />
+          </UpdateParameters>
+      </asp:SqlDataSource>

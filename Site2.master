@@ -1,0 +1,142 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site2.master.cs" Inherits="SiteMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head id="Head1" runat="server">
+    <title>Tanghalang Pasigueño</title>
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .menu
+        {
+            color: #FFFF80;
+        }
+    </style>
+</head>
+<body>
+    <form id="Form1" runat="server">
+    <div class="page">
+      <div class="header">
+            <div class="title">
+            </div>
+            <div class="loginDisplay">
+                <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                    <AnonymousTemplate>
+                        [ <a href="~/Account/Login.aspx" ID="HeadLoginStatus" runat="server" 
+                            style="color: #FFFFFF">Log In</a> ]
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>
+                        Welcome <span class="bold"><asp:LoginName ID="HeadLoginName" runat="server" /></span>!<br>
+                        <br>
+                        [
+                        <asp:LoginStatus ID="HeadLoginStatus" runat="server" ForeColor="White" 
+                            LogoutAction="Redirect" LogoutPageUrl="~/" LogoutText="Log Out" />
+                        ] </br>
+                    </LoggedInTemplate>
+                </asp:LoginView>
+            </div>
+            <div class="clear hideSkiplink">
+                <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" 
+                    EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/Admin/Admin.aspx" Text="Home" />
+                        <asp:MenuItem Text="Reservation" Value="Reservation">
+                            <asp:MenuItem Text="Tentative Reservation" Value="Tentative Reservation" 
+                                NavigateUrl="~/Admin/Tentative.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Request for Cancellation" Value="Request for Cancellation" 
+                                NavigateUrl="~/Admin/RFC.aspx"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/Admin/RFR.aspx" Text="Request for Reschedule" 
+                                Value="Request for Reschedule"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/Admin/Contracty.aspx" Text="Confirmed Billing" 
+                                Value="Confirmed Billing"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/Admin/UnsettledReservationd.aspx" Text="Unsettled Reservations" 
+                                Value="Unsettled Reservations"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/Admin/Refunds.aspx" Text="Refunds" 
+                                Value="Refunds"></asp:MenuItem>
+                        </asp:MenuItem>
+                       
+                       
+                        <asp:MenuItem Text="Documents" Value="Documents">
+                            <asp:MenuItem Text="Contract" Value="Contract" 
+                                NavigateUrl="~/Admin/ReleaseContract.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Second Billing" Value="Second Billing" 
+                                NavigateUrl="~/Admin/Billing2.aspx"></asp:MenuItem>
+                        </asp:MenuItem>
+
+                          <asp:MenuItem Text="After Event" Value="After Event" 
+                            NavigateUrl="~/Admin/EOS0.aspx"></asp:MenuItem>
+
+                         <asp:MenuItem Text="Payment" Value="Payment" 
+                            NavigateUrl="~/Admin/PaymentSys.aspx"></asp:MenuItem>
+                  
+                  
+<%--
+                        <asp:MenuItem Text="Maintenance" Value="FAQ">
+                            <asp:MenuItem Text="Amenities" Value="Amenities" 
+                                NavigateUrl="~/Maintenance/amenities.aspx"></asp:MenuItem>
+                           <asp:MenuItem NavigateUrl="~/Maintenance/Events.aspx" Text="Facilities" 
+                                Value="Events"></asp:MenuItem>
+                           </asp:MenuItem>--%>
+                           
+                      
+                       <asp:MenuItem Text="Reports" Value="Reports">
+                            
+                            <asp:MenuItem NavigateUrl="~/Reports/AmenitiesReportYSA.aspx" Text="Amenity List" 
+                                Value="Amenity List"></asp:MenuItem>
+
+                                
+                            <asp:MenuItem NavigateUrl="~/Reports/BalanceReportYSA.aspx" Text="Balance Report" 
+                                Value="Balance Report"></asp:MenuItem>
+
+                                <asp:MenuItem NavigateUrl="~/Reports/CancelledReportYSA.aspx"
+                                Text="Cancelled Reservation Report" Value="Cancelled Reservation Report">
+                            </asp:MenuItem>
+
+                            <asp:MenuItem NavigateUrl="~/Reports/ClientReport.aspx" Text="Client List" 
+                                Value="Client List"></asp:MenuItem>
+
+<asp:MenuItem NavigateUrl="~/Reports/DamageReportYSA.aspx" Text="Damage Report" 
+                                Value="Damage Report"></asp:MenuItem>
+
+                                  <asp:MenuItem Text="Events Report" Value="Booking Reports" 
+                                NavigateUrl="~/Reports/EventsReportYSA.aspx"></asp:MenuItem>
+<%--
+                            <asp:MenuItem NavigateUrl="~/Reports/FacilityReportYSA.aspx" Text="Facility List" 
+                                Value="Facility List"></asp:MenuItem>--%>
+                           
+                            
+                            <asp:MenuItem Text="Income Report" Value="Income Report" 
+                                NavigateUrl="~/Reports/IncomeReportYSA.aspx"></asp:MenuItem>
+                                
+                        </asp:MenuItem>
+                         <%--<asp:MenuItem Text="Audit Trail" Value="AuditTrail">
+                            <asp:MenuItem NavigateUrl="~/Admin/UpdateTrails.aspx" Text="UpdateTrail" 
+                                Value="UpdateTrail"></asp:MenuItem>
+                            <asp:MenuItem Text="Logs" Value="New Item" NavigateUrl="~/Admin/Logs.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="DeleteTrail" Value="New Item" 
+                                NavigateUrl="~/Admin/DeleteTrail.aspx"></asp:MenuItem>
+                        </asp:MenuItem>--%>
+
+                               <asp:MenuItem Text="Logs" Value="New Item" NavigateUrl="~/Admin/Logs.aspx"></asp:MenuItem>
+                     
+                    
+                    </Items>
+                </asp:Menu>
+            </div>
+        </div>
+        <div class="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                <p>
+                </p>
+            </asp:ContentPlaceHolder>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="footer">
+        
+    </div>
+    </form>
+</body>
+</html>

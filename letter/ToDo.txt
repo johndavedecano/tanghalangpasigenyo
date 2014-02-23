@@ -1,0 +1,11 @@
+TO DO:
+Filter Upload File
+1. http://forums.asp.net/t/1156963.aspx/1
+
+Password Trials
+1. http://www.asp.net/web-forms/tutorials/security/membership/validating-user-credentials-against-the-membership-user-store-cs
+2. http://www.asp.net/web-forms/tutorials/security/admin/unlocking-and-approving-user-accounts-vb
+
+BackUp
+backUpEverydayOK/BackUpkungkailangusto
+Restore

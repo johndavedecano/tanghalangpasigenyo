@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<!-- 
+  Visual Studio global web project settings.
+-->
+<VisualWebDeveloper>
+
+  <comReferences>
+    <reference Name="interop.crystalanalysiscommoncontrolslib" ID="{E377F909-BCFE-4E8E-B17C-8B1CBC7C7243}\1.0\0"/>
+    <reference Name="interop.crystalanalysiscommlayerlib" ID="{AAA3345B-2177-4D19-8D75-21688FE36251}\1.0\0"/>
+    <reference Name="interop.crystalreportscommonobjectmodellib" ID="{FDB9B69E-BA79-4B13-9E96-8373AF162AEA}\1.0\0"/>
+  </comReferences>
+</VisualWebDeveloper>

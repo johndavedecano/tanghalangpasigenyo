@@ -1,0 +1,4 @@
+#Ignore:
+/Database
+/ASPNETDB.MDF
+/aspnetdb_log.ldf
