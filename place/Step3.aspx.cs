@@ -40,16 +40,6 @@ public partial class client_Default : System.Web.UI.Page
         DateTime d = DateTime.Now;
         if (et == "Big Event")
         {
-            //DataView dv = (DataView)ReservedDateSelect.Select(DataSourceSelectArguments.Empty);
-            //foreach (DataRow dr in dv.Table.Rows)
-            //{
-            //    if (e.Day.Date == (DateTime)dv.Table.Rows[x][0])
-            //    {
-            //        e.Day.IsSelectable = false;
-            //        e.Cell.CssClass = "testing2";
-            //    }
-            //    x++;
-            //}
             if (e.Day.Date <= DateTime.Now)
             {
                 e.Day.IsSelectable = false;
@@ -66,23 +56,12 @@ public partial class client_Default : System.Web.UI.Page
                 e.Day.IsSelectable = false;
                 e.Cell.Font.Strikeout = true;
             }
-            // DataView dv3 = (DataView)PracticeDateSelect.Select(DataSourceSelectArguments.Empty);
-
-            //foreach (DataRow dr in dv3.Table.Rows)
-            //{
-            //    if (e.Day.Date == (DateTime)dv3.Table.Rows[y][0])
-            //    {
-            //        e.Cell.CssClass = "testing";
-            //        e.Day.IsSelectable = true;
-            //        e.Cell.Font.Strikeout = false;
-            //    }
-            //    y++;
-            //}
         }
     }
     protected void Button2_Click(object sender, EventArgs e)
     {
-        Session["ReservationDate"] = TextBox3.Text;
+        String ReservationDate = TextBox3.Text;
+        Session["ReservationDate"] = ReservationDate;
         Response.Redirect("~/place/step4.aspx");
     }
     protected void Button1_Click(object sender, EventArgs e)

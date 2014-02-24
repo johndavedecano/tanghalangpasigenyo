@@ -71,8 +71,10 @@
                             NavigateUrl="~/Admin/PaymentSys.aspx"></asp:MenuItem>
 
                         <asp:MenuItem Text="Users" Value="Users">
-                            <asp:MenuItem Text="All Users" Value="All Users" 
+                            <asp:MenuItem Text="Employees" Value="Employees" 
                                 NavigateUrl="~/Admin/Users.aspx"></asp:MenuItem>
+                            <asp:MenuItem Text="Clients" Value="Clients" 
+                                NavigateUrl="~/Admin/Clients.aspx"></asp:MenuItem>
                             <asp:MenuItem Text="Add User" Value="Add User" 
                                 NavigateUrl="~/Admin/Users_Add.aspx"></asp:MenuItem>
                         </asp:MenuItem>

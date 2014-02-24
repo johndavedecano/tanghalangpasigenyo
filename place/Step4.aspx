@@ -82,6 +82,9 @@
     <br /><br />
     <br /><br />
     <div class="style2">Tanghalang Pasigueño offers their service 24/7</div>
+        <asp:Panel ID="TimeSlotValid" runat="server"><br />
+            <div class="alert alert-danger" style="border:1px solid red; padding:10px; text-align:left;">Timeslot is not available.</div>
+        </asp:Panel>
         <div class="time">
         &nbsp;<br />
             <br />

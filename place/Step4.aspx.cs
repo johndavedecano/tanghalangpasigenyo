@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Web.Security;
+using System.Web.Configuration;
+using System.Data.SqlClient;
 
 public partial class client_Default : System.Web.UI.Page
 {
@@ -23,23 +26,27 @@ public partial class client_Default : System.Web.UI.Page
         {
             Response.Redirect("~/place/Step1.aspx");
         }
-        Session["StartTime"] = null;
-        Session["EndTime"] = null;
-        Session["NoofHours"] = null;
-        DataView dv2 = (DataView)EventType.Select(DataSourceSelectArguments.Empty);
-        et = (string)dv2.Table.Rows[0][0];
-        if (et == "Small Event")
-        {
-            Label3.Text = "<strong>The Venue is not available</strong>";
-        }
-        else
-        {
-            Label3.Text = "";
-        }
-        DataView dv3 = (DataView)AffectedCount.Select(DataSourceSelectArguments.Empty);
-        int count = (int)dv3.Table.Rows[0][0];
-        if (count == 0)
-            Label3.Text = "";
+            Session["StartTime"] = null;
+            Session["EndTime"] = null;
+            Session["NoofHours"] = null;
+
+            DataView dv2 = (DataView)EventType.Select(DataSourceSelectArguments.Empty);
+
+            et = (string)dv2.Table.Rows[0][0];
+
+            if (et == "Small Event")
+            {
+                Label3.Text = "<strong>The Venue is not available</strong>";
+            }
+            else
+            {
+                Label3.Text = "";
+            }
+            DataView dv3 = (DataView)AffectedCount.Select(DataSourceSelectArguments.Empty);
+            int count = (int)dv3.Table.Rows[0][0];
+            if (count == 0)
+                Label3.Text = "";
+            TimeSlotValid.Visible = false;
     }
     protected string ConvertTime(TimeSpan d)
     {
@@ -63,6 +70,23 @@ public partial class client_Default : System.Web.UI.Page
         s = x.ToString() + ":" + testing.Substring(3, 2) + post;
         return s;
     }
+    private bool ValidateDate(TimeSpan startime,TimeSpan endtime,DateTime ReservationDate)
+    {
+        string cmd_string = "SELECT COUNT(*) FROM ReservationTBL WHERE ReservationDate = '" + ReservationDate.ToString() + "' AND (ReservationStartTime BETWEEN '" + startime.ToString() + "' AND '" + endtime.ToString() + "') OR (ReservationStartTime BETWEEN '" + startime.ToString() + "' AND '" + endtime.ToString() + "')";
+        string s = WebConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+        SqlConnection con = new SqlConnection(s);
+        SqlDataReader m;
+        con.Open();
+        SqlCommand cmd = new SqlCommand(cmd_string,con);
+        m = cmd.ExecuteReader();
+        if (m.Read()){
+            con.Close();
+            return false;
+        }else{
+            con.Close();
+            return true;
+        }
+    }
     protected void Button2_Click(object sender, EventArgs e)
     {
         contime();
@@ -72,42 +96,35 @@ public partial class client_Default : System.Web.UI.Page
         Session["NoofHours"] = DropDownList1.SelectedValue.ToString();
         DateTime ReservationD = Convert.ToDateTime(Session["ReservationDate"]);
         int x = 0;
-
         TimeSpan startT = TimeSpan.Parse(starttime.Text);
         TimeSpan endT = TimeSpan.Parse(endtime.Text);
 
-        DataView dv = (DataView)SqlDataSource1.Select(DataSourceSelectArguments.Empty);
-        foreach (DataRow dr in dv.Table.Rows)
+        if (this.ValidateDate(startT, endT, ReservationD) == false)
         {
-
-            if (ReservationD.Date == (DateTime)dv.Table.Rows[x][2])
+            DataView dv = (DataView)SqlDataSource1.Select(DataSourceSelectArguments.Empty);
+            foreach (DataRow dr in dv.Table.Rows)
             {
-                if (((((TimeSpan)dv.Table.Rows[x][3]) <= startT) && (((TimeSpan)dv.Table.Rows[x][4]) >= startT)) || ((((TimeSpan)dv.Table.Rows[x][3]) <= endT) && (((TimeSpan)dv.Table.Rows[x][4]) >= endT)))
+
+                if (ReservationD.Date == (DateTime)dv.Table.Rows[x][2])
                 {
-                    Label3.Text = "<strong>The Venue is not available</strong>";
+                    if (((((TimeSpan)dv.Table.Rows[x][3]) <= startT) && (((TimeSpan)dv.Table.Rows[x][4]) >= startT)) || ((((TimeSpan)dv.Table.Rows[x][3]) <= endT) && (((TimeSpan)dv.Table.Rows[x][4]) >= endT)))
+                    {
+                        Label3.Text = "<strong>The Venue is not available</strong>";
+                    }
+
+                    else
+                    {
+                        Label3.Text = "";
+                        Response.Redirect("~/place/step5.aspx");
+
+                    } x++;
                 }
-
-                else
-                {
-                    Label3.Text = "";
-                    Response.Redirect("~/place/step5.aspx");
-
-                } x++;
-
-
             }
+            if (dv.Count == 0) { Label3.Text = ""; Response.Redirect("~/place/step5.aspx");}
         }
-
-            if (dv.Count == 0)
-            {
-
-                Label3.Text = "";
-                Response.Redirect("~/place/step5.aspx");
-            
-            }
-        
-
-        
+        else {
+            TimeSlotValid.Visible = true;
+        }
     }
     protected void contime()
     {
