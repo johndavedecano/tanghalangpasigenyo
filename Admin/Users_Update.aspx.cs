@@ -17,6 +17,8 @@ public partial class Admin_Users_Update : System.Web.UI.Page
             string id = Request["EmpId"];
             UserForm.Visible = true;
             UserNotFound.Visible = false;
+            Notifications.Visible = false;
+            UserName.Enabled = false;
             this.FindEmployee(id);
             this.Load_Roles();
         }
@@ -46,18 +48,60 @@ public partial class Admin_Users_Update : System.Web.UI.Page
             Email.Text = u.Email;
             // GET CURRENT USER ROLE
             string[] userRoles = Roles.GetRolesForUser(u.UserName);
-            CurrentRole.Text = userRoles[0].ToString();
+            if (userRoles != null) {
+                CurrentRole.Text = userRoles[0].ToString();
+                RolesDropdown.SelectedValue = userRoles[0].ToString();
+            }
+            if (u.IsApproved == true)
+            {
+                UserStatus.SelectedValue = "yes";
+            }
+            else
+            {
+                UserStatus.SelectedValue = "no";
+            }
         }
         else {
             UserForm.Visible = false;
             UserNotFound.Visible = true;
         }
-
-        
     }
 
     public void UpdateUser_OnClick(object sender, EventArgs args)
-    { 
-        
+    {
+        try
+        {
+            MembershipUser u = Membership.GetUser(UserName.Text);
+            u.Email = Email.Text;
+            if (PasswordTextbox.Text != "" && PasswordConfirmTextbox.Text != "")
+            {
+                u.ChangePassword(u.ResetPassword(), PasswordTextbox.Text);
+            }
+            if (UserStatus.Text == "yes")
+            {
+                u.IsApproved = true;
+            }
+            else {
+                u.IsApproved = false;
+            }
+            Membership.UpdateUser(u);
+            string id = Request["EmpId"];
+            string cmd_string = "UPDATE EmployeeTBL SET EmpFName = '"+FirstName.Text+"', EmpLName = '"+LastName.Text+"', Position = '"+RolesDropdown.Text+"' WHERE EmpId = '"+id+"'";
+            string s = WebConfigurationManager.ConnectionStrings["ApplicationServices"].ConnectionString;
+            SqlConnection con = new SqlConnection(s);
+            SqlCommand cmd = new SqlCommand(cmd_string, con);
+            con.Open();
+            cmd.ExecuteNonQuery();
+            con.Close();
+
+            Notifications.Visible = true;
+            NotificationsMessage.Text = "<div class='alert alert-success'>Account has been successfully updated.</div>";
+
+        }
+        catch (System.Configuration.Provider.ProviderException e)
+        {
+            Notifications.Visible = true;
+            NotificationsMessage.Text = "<div class='alert alert-danger'>"+e.Message.ToString()+"</div>";
+        }
     }
 }
